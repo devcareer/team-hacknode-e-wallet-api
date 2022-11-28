@@ -22,7 +22,7 @@ export default class jwtHelper {
    * @param {string} secret - The JWT secret key
    * @returns {string} The JWT signed token
    */
-  static async accessToken(payload, secret = secretKey) {
+  static async refreshToken(payload, secret = secretKey) {
     const token = await jwt.sign(payload, secret, { expiresIn: '10d' });
     return token;
   }
