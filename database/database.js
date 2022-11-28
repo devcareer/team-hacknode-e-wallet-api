@@ -7,7 +7,7 @@ module.exports = {
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
-    DB_host: DB_HOST,
+    host: DB_HOST,
     dialect: 'postgres',
   },
 
@@ -15,7 +15,7 @@ module.exports = {
     username: TESTDB_USER,
     password: TESTDB_PASSWORD,
     database: TESTDB_NAME,
-    DB_host: TESTDB_HOST,
+    host: TESTDB_HOST,
     dialect: 'postgres',
     logging: false,
   },
@@ -24,7 +24,7 @@ module.exports = {
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
-    DB_host: DB_HOST,
+    host: DB_HOST,
     dialect: 'postgres',
   },
 };
