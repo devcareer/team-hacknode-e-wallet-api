@@ -5,13 +5,16 @@ const { development } = require('./database');
 // new database connection using sequelize client
 const sequelize = new Sequelize(development);
 
+// logger
+const { logger } = require('../src/assests/logger');
+
 // database connection using configuration in db.config.js
 const databaseConnection = async () => {
   try {
     await sequelize.authenticate();
-    console.log('successfully connected to database');
+    logger.info('successfully connected to database');
   } catch (error) {
-    console.error('unable to connect to database');
+    logger.error('unable to connect to database');
   }
 };
 
