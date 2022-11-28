@@ -1,14 +1,15 @@
 # Database documentation
 
-  This file explains the structure of the database folder 
+This file explains the structure of the database folder
 
 ## Database folder
 
-  The database folder is a seperate folder from the `src` which houses the server files, since the database is a seperate instance from the server itself. All files and concerns regarding the database can be found within this folder.
+The database folder is a seperate folder from the `src` which houses the server files, since the database is a seperate instance from the server itself. All files and concerns regarding the database can be found within this folder.
 
-## Folder Structure 
+## Folder Structure
 
 The folder structure is as shown below
+
 ```
 database/
  |--migrations/
@@ -17,7 +18,7 @@ database/
  |--database.js
 ```
 
-> migrations 
+> migrations
 
     This folder will contain the migration files for the various models in the models folder
 
@@ -31,8 +32,8 @@ database/
 
 > database.js
 
-    This file contains the various config states for sequelize database depending on the mode the server is running on i.e "development", "testing" or "production". 
+    This file contains the various config states for sequelize database depending on the mode the server is running on i.e "development", "testing" or "production".
 
-### Setting up database 
+### Setting up database
 
 Configure the .env file using .env.example setting the values for the database instance.
