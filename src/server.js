@@ -4,8 +4,7 @@ const express = require('express');
 
 const { logger } = require('./assests/logger');
 
-// eslint-disable-next-line no-unused-vars
-const db = require('../database/config');
+require('../database/config');
 
 const app = express();
 
