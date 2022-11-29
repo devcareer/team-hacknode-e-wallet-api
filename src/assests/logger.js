@@ -1,3 +1,4 @@
+require('dotenv').config();
 const winston = require('winston');
 
 const WinstonSlacker = require('winston-slacker');
@@ -6,7 +7,7 @@ const webHook = process.env.SLACK_WEBHOOK;
 
 const slackChannel = process.env.SLACK_CHANNEL;
 
-// this is for logging to locally to the combined.log and error.log files
+// this is for logging locally to the combined.log and error.log files
 const fileLogger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
