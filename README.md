@@ -2,7 +2,7 @@
 
 An e-wallet API created with Node.js, PostgreSQL and Sequelize.
 
-**TABLE OF CONTENTS
+**TABLE OF CONTENTS**
 
 - Introduction
 - Features
@@ -11,23 +11,23 @@ An e-wallet API created with Node.js, PostgreSQL and Sequelize.
 - How to setup the database
 - Contributions
 
-**INTRODUCTION
+**Introduction**
 
 Welcome aboard! This e-wallet API is a software app that allows users register and carry out a number of financial activities with ease.
 
 
-**FEATURES
+**Features**
 
-*Users => Registration
-         payments
-         transfers
-         notifications
-         transaction history
-*Admin => User management 
-         Security
+> Users=> Registration
+          payments
+          transfers
+          notifications
+          transaction history
+> Admin=> User management 
+          Security
 
 
-**TECHNOLOGIES 
+**Technologies**
 
 NodeJS
 ExpressJS
@@ -39,7 +39,7 @@ Twilio : for SMS management
 JWT => for Token management
 
 
-**HOW TO SET UP AND RUN THE PROJECT LOCALLY
+**How to set up project locally**
 
 - clone this repo to your local editor
 - Setup your postgreSQL database
@@ -47,7 +47,7 @@ JWT => for Token management
 - Start the node server via NPM.
 
 
-**HOW TO SET UP THE DATATBASE
+**How to setup datatbase**
 
 - First create your database using pgAdmin or using 'createdb' on CLI. Follow the steps in https://www.postgresql.org/download/windows/ to install postgres locally.
 
@@ -62,5 +62,5 @@ JWT => for Token management
 - Run sequelize db:migrate to test your connection.
 
 
-**CONTRIBUTIONS
+**Contributions...
 
