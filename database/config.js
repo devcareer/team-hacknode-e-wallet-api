@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const { Sequelize } = require('sequelize');
 const { development } = require('./database');
-const dbTable = require('../src/models')
+const dbTable = require('../src/models');
 
 // new database connection using sequelize client
 const sequelize = new Sequelize(development);
@@ -24,12 +24,15 @@ databaseConnection();
 // Sync all models with the Database
 const syncDB = (db) => {
   // force: do not drop the table if it already exist but add to it
-  db.sequelize.sync({force: false}).then(() => {
-    logger.info('Database & tables(s) synced successfully');
-  }).catch(err => {
-    logger.error('Unable to sync with the Database', err);
-  })
-}
+  db.sequelize
+    .sync({ force: false })
+    .then(() => {
+      logger.info('Database & tables(s) synced successfully');
+    })
+    .catch((err) => {
+      logger.error('Unable to sync with the Database', err);
+    });
+};
 
 syncDB(dbTable);
 
