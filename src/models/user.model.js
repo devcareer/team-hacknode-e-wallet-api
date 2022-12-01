@@ -4,9 +4,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
-            // type: DataTypes.INTEGER,
-            // autoIncrement: true,
-            // primaryKey: true
         },
         first_name: {
             type: DataTypes.STRING,
@@ -16,10 +13,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        email_name: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true        },
+            unique: true
+        },
         password: {
             type: DataTypes.STRING,
             allowNull: false
@@ -40,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         role: {
             type: DataTypes.ENUM('Admin', 'User'),
-            allowNull: false
+            allowNull: false,
+            defaultValue: 'User'
         },
 
     }, {
