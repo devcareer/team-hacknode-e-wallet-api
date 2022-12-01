@@ -1,6 +1,10 @@
 const winston = require('winston');
 const SlackHook = require('winston-slack-webhook-transport');
 
+const slackChannel = process.env.SLACK_CHANNEL;
+
+const slackUrl = process.env.SLACK_WEBHOOK;
+
 const { colorize, combine, timestamp } = winston.format;
 
 // this is for logging locally to the combined.log and error.log files
@@ -19,10 +23,10 @@ const externalLogger = winston.createLogger({ level: 'debug' });
 
 externalLogger.add(
   new SlackHook({
-    webhookUrl: 'https://hooks.slack.com/services/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',
+    webhookUrl: slackUrl,
     formatter: combine(colorize(), timestamp()),
     username: 'hackNode-logger',
-    channel: 'hacknode-logs',
+    channel: slackChannel,
   })
 );
 
