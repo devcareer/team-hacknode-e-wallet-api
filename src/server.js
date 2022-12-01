@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 
-const { logger } = require('./assests/logger');
+const { logger } = require('./utils/logger');
 
 require('../database/config');
 

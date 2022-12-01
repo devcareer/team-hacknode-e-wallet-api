@@ -6,7 +6,7 @@ const { development } = require('./database');
 const sequelize = new Sequelize(development);
 
 // logger
-const { logger } = require('../src/assests/logger');
+const { logger } = require('../src/utils/logger');
 
 // database connection using configuration in db.config.js
 const databaseConnection = async () => {
