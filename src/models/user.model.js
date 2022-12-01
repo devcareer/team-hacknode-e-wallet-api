@@ -21,12 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },
         phone_number: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
         },
         is_verified: {
             type: DataTypes.BOOLEAN,
