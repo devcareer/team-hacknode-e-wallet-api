@@ -24,7 +24,7 @@ export default class jwtHelper {
    * @returns {string} The JWT signed token
    */
   static async refreshToken(payload, secret = secretKey) {
-    const token = await jwt.sign(payload, secret, { expiresIn: '10d' });
+    const token = await jwt.sign(payload, secret, { expiresIn: '1d' });
     return token;
   }
 }
