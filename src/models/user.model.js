@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         phone_number: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         is_verified: {
             type: DataTypes.BOOLEAN,
