@@ -33,4 +33,7 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Add Table(s) to the Database
+db.users = require('./user.model')(sequelize, Sequelize.DataTypes);
+
 module.exports = db;
