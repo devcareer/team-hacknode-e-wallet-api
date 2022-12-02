@@ -1,11 +1,8 @@
 const winston = require('winston');
-const SlackHook = require('winston-slack-webhook-transport');
 
 const slackChannel = process.env.SLACK_CHANNEL;
 
 const slackUrl = process.env.SLACK_WEBHOOK;
-
-const { colorize, combine, timestamp } = winston.format;
 
 // this is for logging locally to the combined.log and error.log files
 const fileLogger = winston.createLogger({
@@ -19,19 +16,31 @@ const fileLogger = winston.createLogger({
 });
 
 // this is for logging externally to slack channel
-const externalLogger = winston.createLogger({ level: 'debug' });
+const SlackHook = require('winston-slack-hook');
 
-externalLogger.add(
-  new SlackHook({
-    webhookUrl: slackUrl,
-    formatter: combine(colorize(), timestamp()),
-    username: 'hackNode-logger',
-    channel: slackChannel,
-  })
-);
+const externalLogger = winston.createLogger({
+  transports: [
+    new SlackHook({
+      hookUrl: slackUrl,
+      username: 'hackNode-logger',
+      channel: slackChannel,
+      formatter(options) {
+        const { message } = options; // original message
+
+        return ` ${process.env.NODE_ENV}  ${message}`;
+      },
+      colors: {
+        warn: 'warning',
+        error: 'danger',
+        info: 'good',
+        debug: '#bbddff',
+      },
+    }),
+  ],
+});
 
 if (process.env.NODE_ENV === 'development') {
-  module.exports = fileLogger;
+  module.exports = externalLogger;
 } else if (process.env.NODE_ENV === 'production') {
   module.exports = externalLogger;
 }
