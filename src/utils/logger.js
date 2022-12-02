@@ -1,19 +1,16 @@
 const winston = require('winston');
 
-const slackChannel = process.env.SLACK_CHANNEL;
-
-const slackUrl = process.env.SLACK_WEBHOOK;
-
-const SlackHook = require('winston-slack-hook');
+const { SLACK_CHANNEL, SLACK_WEBHOOK, NODE_ENV } = process.env;
 
 // this is for logging externally to slack channel and to log files during development
+const SlackHook = require('winston-slack-hook');
 
 const developmentLogger = winston.createLogger({
   transports: [
     new SlackHook({
-      hookUrl: slackUrl,
+      hookUrl: SLACK_WEBHOOK,
       username: 'hackNode-logger',
-      channel: slackChannel,
+      channel: SLACK_CHANNEL,
       formatter(options) {
         const { message } = options; // original message
 
@@ -31,13 +28,13 @@ const developmentLogger = winston.createLogger({
   ],
 });
 
-// this is for logging to only slack during production
+// this is for logging to only to slack during production
 const productionLogger = winston.createLogger({
   transports: [
     new SlackHook({
-      hookUrl: slackUrl,
+      hookUrl: SLACK_WEBHOOK,
       username: 'hackNode-logger',
-      channel: slackChannel,
+      channel: SLACK_CHANNEL,
       formatter(options) {
         const { message } = options; // original message
 
@@ -53,8 +50,8 @@ const productionLogger = winston.createLogger({
   ],
 });
 
-if (process.env.NODE_ENV === 'development') {
-  module.exports = developmentLogger;
-} else if (process.env.NODE_ENV === 'production') {
+if (NODE_ENV === 'production') {
   module.exports = productionLogger;
+} else {
+  module.exports = developmentLogger;
 }
