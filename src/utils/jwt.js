@@ -13,8 +13,8 @@ export default class jwtHelper {
    * @param {string} secret - The JWT secret key
    * @returns {string} The JWT signed token
    */
-  static async generateToken(id, secret = secretKey) {
-    const token = jwt.sign(id, secret, { expiresIn: '1h' });
+  static async generateacessToken(userid, secret = secretKey) {
+    const token = jwt.sign(userid, secret, { expiresIn: '1h' });
     return token;
   }
 
@@ -23,8 +23,8 @@ export default class jwtHelper {
    * @param {string} secret - The JWT secret key
    * @returns {string} The JWT signed token
    */
-  static async refreshToken(id, secret = secretKey) {
-    const token = jwt.sign(id, secret, { expiresIn: '1d' });
+  static async refreshToken(userid, secret = secretKey) {
+    const token = jwt.sign(userid, secret, { expiresIn: '1d' });
     return token;
   }
 }
