@@ -9,22 +9,22 @@ const secretKey = process.env.JWT_KEY;
  */
 export default class jwtHelper {
   /**
-   * @param {object} payload - The details to be signed
+   * @param {object} id - The user id  to be signed
    * @param {string} secret - The JWT secret key
    * @returns {string} The JWT signed token
    */
-  static async generateToken(payload, secret = secretKey) {
-    const token = await jwt.sign(payload, secret, { expiresIn: '1h' });
+  static async generateToken(id, secret = secretKey) {
+    const token = jwt.sign(id, secret, { expiresIn: '1h' });
     return token;
   }
 
   /**
-   * @param {object} payload - The details to be signed
+   * @param {object} id - The user id to be signed
    * @param {string} secret - The JWT secret key
    * @returns {string} The JWT signed token
    */
-  static async refreshToken(payload, secret = secretKey) {
-    const token = await jwt.sign(payload, secret, { expiresIn: '1d' });
+  static async refreshToken(id, secret = secretKey) {
+    const token = jwt.sign(id, secret, { expiresIn: '1d' });
     return token;
   }
 }
