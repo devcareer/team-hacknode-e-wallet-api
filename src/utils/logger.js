@@ -14,7 +14,7 @@ const developmentLogger = winston.createLogger({
       formatter(options) {
         const { message } = options; // original message
 
-        return ` ${process.env.NODE_ENV}  ${message}`;
+        return ` ${NODE_ENV}:  ${message}`;
       },
       colors: {
         warn: 'warning',
@@ -38,7 +38,7 @@ const productionLogger = winston.createLogger({
       formatter(options) {
         const { message } = options; // original message
 
-        return ` ${process.env.NODE_ENV}  ${message}`;
+        return ` ${NODE_ENV}:  ${message}`;
       },
       colors: {
         warn: 'warning',
