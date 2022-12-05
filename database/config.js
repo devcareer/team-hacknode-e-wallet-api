@@ -7,7 +7,7 @@ const dbTable = require('../src/models');
 const sequelize = new Sequelize(development);
 
 // logger
-const { logger } = require('../src/assests/logger');
+const logger = require('../src/utils/logger');
 
 // database connection using configuration in db.config.js
 const databaseConnection = async () => {
@@ -16,6 +16,7 @@ const databaseConnection = async () => {
     logger.info('successfully connected to database');
   } catch (error) {
     logger.error('unable to connect to database');
+    logger.info(error);
   }
 };
 
