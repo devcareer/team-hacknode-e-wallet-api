@@ -3,7 +3,7 @@ const express = require('express');
 require('../database/config');
 
 // middlewares
-const { errorHandler } = require('./utils/errorHandler');
+const errorHandler = require('./utils/errorHandler');
 const logger = require('./utils/logger');
 
 const app = express();
