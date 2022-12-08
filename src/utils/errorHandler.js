@@ -1,7 +1,7 @@
 const logger = require('./logger');
 
 // error handler middleware that catches all errors
-const errorHandler = (err, req, res) => {
+const errorHandler = (err, req, res, next) => {
   let { statusCode } = err;
   const { message, stack } = err;
 
@@ -17,6 +17,7 @@ const errorHandler = (err, req, res) => {
     status: 'error',
     message: message || 'An error occurred with the server',
   });
+  next();
 };
 
 module.exports = errorHandler;
