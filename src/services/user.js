@@ -1,57 +1,27 @@
-/* eslint-disable no-useless-catch */
-/* eslint-disable no-undef */
+/* eslint-disable camelcase */
+const bcrypt = require('bcrypt');
 const database = require('../models');
+const registerValidation = require('../validation/user');
+const { errorResponse } = require('../utils/response');
 
-/**
- * @class User
- * @description User services
- * @exports User
- */
-module.exports = class User {
-  /**
-   * @param {string} username - The user name
-   * @returns {object} - An instance of the Users model class
-   */
-  static async phoneExist(phone) {
-    try {
-      const phoneExist = await database.User.findOne({
-        where: {
-          phone_number: phone,
-        },
-      });
-      return phoneExist;
-    } catch (error) {
-      throw error;
-    }
+const registerService = async (req, res) => {
+  const { error } = registerValidation(req.body);
+  if (error) {
+    return res.status(400).json({ status: 400, error: error.message });
   }
+  const { email, first_name, last_name, password, phone_number } = req.body;
+  const Email = email.toLowerCase();
+  const emailExist = await await database.User.findOne({
+    where: {
+      email,
+    },
+  });
+  if (emailExist) return errorResponse(res, 409, 'Email already used by another user.');
 
-  /**
-   * @param {string} email  - The user email
-   * @returns {object} - An instance of the Users model class
-   */
-  static async emailExist(email) {
-    try {
-      return await database.User.findOne({
-        where: {
-          email,
-        },
-      });
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  /**
-   * @param {object} newUser - The user details
-   * @returns {object} - An instance of the Users model class
-   */
-  static async createUser(newUser) {
-    try {
-      const createUser = await database.User.create(newUser);
-
-      return createUser;
-    } catch (error) {
-      throw error;
-    }
-  }
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const newUser = { email: Email, first_name, last_name, password: hashedPassword, phone_number };
+  const createdUser = await await database.User.create(newUser);
+  return createdUser;
 };
+
+module.exports = registerService;
