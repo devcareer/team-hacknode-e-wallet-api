@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             references: {
               model: 'users',
               key: 'id',
+            }
         },
         status: {
           type: DataTypes.ENUM(VERIFIED, UNVERIFIED),
