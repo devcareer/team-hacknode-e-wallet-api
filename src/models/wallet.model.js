@@ -1,3 +1,5 @@
+const {VERIFIED, UNVERIFIED} = require(`../../src/utils/constants.js`);
+
 module.exports = (sequelize, DataTypes) => {
     const Wallet = sequelize.define(
       'Wallet',
@@ -12,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
         },
         status: {
-          type: DataTypes.ENUM('Active', 'Inactive'),
+          type: DataTypes.ENUM(VERIFIED, UNVERIFIED),
           allowNull: false,
         },
         balance: {
-          type: DataTypes.DECIMAL,
+          type: DataTypes.DECIMAL(10,2).UNSIGNED,
           allowNull: false,
         },
       },    

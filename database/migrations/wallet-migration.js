@@ -1,3 +1,5 @@
+const {VERIFIED, UNVERIFIED} = require(`../../src/utils/constants.js`);
+
 module.exports = {
     up: async (queryInterface, Sequelize) => {
       await queryInterface.createTable('wallets', 
@@ -7,15 +9,20 @@ module.exports = {
           primaryKey: true,
         },
         user_id: {
-            type: Sequelize.STRING,
+            type: Sequelize.UUID,
             allowNull: false,
+            unique: true,
+            references: {
+              model: 'users',
+              key: 'id',
+            }
           },
         status: {
-            type: Sequelize.ENUM('Active', 'Inactive'),
+            type: Sequelize.ENUM(VERIFIED, UNVERIFIED),
             allowNull: false,
           },
         balance: {
-            type: Sequelize.DECIMAL,
+            type: Sequelize.DECIMAL(10,2).UNSIGNED,
             allowNull: false,
         },
     });
