@@ -1,8 +1,8 @@
 /**
- * @param {object} res - response object from the controller
  * @param {string} code - The http status code to be sent
  * @param {string} message - The message to send to the user
  * @param {object} data - contains the details of the response if any (optional)
+ * @param {object} res - response object from the controller
  */
 const successResponse = (code, message, data, res) => {
   const body = {
@@ -15,9 +15,10 @@ const successResponse = (code, message, data, res) => {
 };
 
 /**
- * @param {object} res - response object from the controller
  * @param {string} code - The http status code to be sent
  * @param {string} message - The error message to send to the user
+ * @param {object} res - response object from the controller
+
  */
 const errorResponse = (code, message, res) => {
   const body = {
