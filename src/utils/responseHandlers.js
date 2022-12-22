@@ -4,11 +4,11 @@
  * @param {object} data - contains the details of the response if any (optional)
  * @param {object} res - response object from the controller
  */
-const successResponse = (code, message, data, res) => {
+const successResponse = (code, message, res, data = {}) => {
   const body = {
     status: 'success',
     message,
-    data: data || {},
+    data,
   };
 
   res.status(code).json(body);
