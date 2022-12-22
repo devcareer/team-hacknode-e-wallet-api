@@ -1,12 +1,15 @@
 require('dotenv').config();
-
 const express = require('express');
-
-const logger = require('./utils/logger');
-
 require('../database/config');
 
+// middlewares
+const errorHandler = require('./utils/errorHandler');
+const logger = require('./utils/logger');
+
 const app = express();
+
+// universal error handler
+app.use(errorHandler);
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
