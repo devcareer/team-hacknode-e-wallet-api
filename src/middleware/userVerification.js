@@ -1,21 +1,17 @@
 const jwt = require('jsonwebtoken');
 
-const { SECRET_KEY } = process.env;
+const secret = process.env.JWT_SECRET;
 
 const verify = (req, res, next) => {
-  //   console.log(req.headers);
-  const token = req.headers.authorization;
-  if (!token) {
-    return res.status(403).json({ message: 'You are not authorized' });
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) return res.status(403).send({ message: 'Token not found' });
+    const decoded = jwt.verify(token, secret);
+    req.user = decoded;
+  } catch (err) {
+    return res.status(401).send({ message: 'Invalid token' });
   }
-  const mainToken = token.split(' ')[1];
-  jwt.verify(mainToken, SECRET_KEY, (err) => {
-    if (err) {
-      return res.status(403).json({ message: 'You are not authorized' });
-    }
-    return next();
-  });
-  return res.status(403).send({ message: 'You are not authorized' });
+  return next();
 };
 
 module.exports = { verify };
