@@ -28,12 +28,6 @@ export default class jwtHelper {
     return token;
   }
 
-  // authorization for logged in user
-  static async verifyUser(token, secret = secretKey) {
-    const userId = jwt.verify(token, secret);
-    return userId;
-  }
-
   // authorization for admin
   static async verifyAdmin(user) {
     if (user.role === 'admin') {
