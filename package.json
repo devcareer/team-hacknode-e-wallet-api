@@ -45,7 +45,7 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.25.6",
     "uuid": "^9.0.0",
-    "winston": "^3.8.2",
+    "winston": "^2.1.1",
     "winston-slack-hook": "^0.3.0",
     "winston-slack-webhook-transport": "^2.2.2",
     "winston-slacker": "^1.0.3"

@@ -1,9 +1,20 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const { Sequelize } = require('sequelize');
-const { development } = require('./database');
+const { development, test, production } = require('./database');
+
+const { NODE_ENV } = process.env;
+
+let sequelize;
 
 // new database connection using sequelize client
-const sequelize = new Sequelize(development);
+if (NODE_ENV === 'development') {
+  sequelize = new Sequelize(development);
+} else if (NODE_ENV === 'test') {
+  sequelize = new Sequelize(test);
+} else {
+  sequelize = new Sequelize(production);
+}
 
 // logger
 const logger = require('../src/utils/logger');
