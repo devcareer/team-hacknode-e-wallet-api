@@ -1,4 +1,4 @@
-const registerService = require('../services/user');
+const { registerService } = require('../services/user');
 const { successResponse, handleError, errorResponse } = require('../utils/response');
 
 /**
@@ -15,11 +15,10 @@ module.exports = class UserController {
   static async createUser(req, res) {
     try {
       const createdUser = await registerService(req, res);
-      return successResponse(res, 200, 'User Created successfully!', createdUser);
+      return successResponse(res, 201, 'User Created successfully!', createdUser);
     } catch (error) {
       handleError(error, req);
       return errorResponse(res, 500, 'Server error.');
     }
   }
 };
-// BIG HEAD

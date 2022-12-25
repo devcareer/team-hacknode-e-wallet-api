@@ -11,7 +11,7 @@ function successResponse(res, statusCode, message, data = []) {
 }
 
 const handleError = (err, req) => {
-  logger.info(`
+  logger.error(`
       Error caught at ${req.path}, 
       Request body: ${JSON.stringify(req.body)},
       Request User: ${JSON.stringify(req.user)},

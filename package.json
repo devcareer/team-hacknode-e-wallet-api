@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx sequelize-cli db:migrate && nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate:up": "npx sequelize-cli db:migrate",
+    "migrate:down": "npx sequelize-cli db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
@@ -44,7 +46,7 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.25.6",
     "uuid": "^9.0.0",
-    "winston": "^3.8.2",
+    "winston": "^2.1.1",
     "winston-slack-hook": "^0.3.0",
     "winston-slack-webhook-transport": "^2.2.2",
     "winston-slacker": "^1.0.3"

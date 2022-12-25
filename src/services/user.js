@@ -1,27 +1,24 @@
 /* eslint-disable camelcase */
 const bcrypt = require('bcrypt');
-const database = require('../models');
+const { User } = require('../models');
 const registerValidation = require('../validation/user');
 const { errorResponse } = require('../utils/response');
 
-const registerService = async (req, res) => {
-  const { error } = registerValidation(req.body);
-  if (error) {
-    return res.status(400).json({ status: 400, error: error.message });
+module.exports = class UserService {
+  static async registerService(req, res) {
+    const { error } = registerValidation(req.body);
+    if (error) {
+      return errorResponse(res, 400, error.message);
+    }
+    const { email, password } = req.body;
+    const emailExist = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    if (emailExist) return errorResponse(res, 404, 'Email exists.');
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await User.create({ password: hashedPassword, ...req.body });
+    return newUser;
   }
-  const { email, first_name, last_name, password, phone_number } = req.body;
-  const Email = email.toLowerCase();
-  const emailExist = await await database.User.findOne({
-    where: {
-      email,
-    },
-  });
-  if (emailExist) return errorResponse(res, 409, 'Email already used by another user.');
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = { email: Email, first_name, last_name, password: hashedPassword, phone_number };
-  const createdUser = await await database.User.create(newUser);
-  return createdUser;
 };
-
-module.exports = registerService;
