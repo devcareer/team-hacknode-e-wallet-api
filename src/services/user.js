@@ -18,7 +18,7 @@ module.exports = class UserService {
     });
     if (emailExist) return errorResponse(res, 404, 'Email exists.');
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ password: hashedPassword, ...req.body });
+    const newUser = await User.create({ ...req.body, password: hashedPassword });
     return newUser;
   }
 };
