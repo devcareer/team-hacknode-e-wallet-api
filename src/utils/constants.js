@@ -26,4 +26,7 @@ module.exports = {
   TRX_SUCCESS: 'success',
   TRX_FAILED: 'failed',
   TRX_PENDING: 'pending',
+
+  ACTIVE: 'active',
+  INACTIVE: 'inactive',
 };
